@@ -44,7 +44,7 @@ const cardCatalogTemplate = document.querySelector('#card-catalog') as HTMLTempl
 
 const cardsArray = mockCatalog.map((item) => {
 
-    const cardHtml = cardCatalogTemplate.content.querySelector('.card').cloneNode(true) as HTMLElement;
+    const cardHtml = cardCatalogTemplate.content.querySelector('.card')!.cloneNode(true) as HTMLElement;
 
     const card = new Card(cardHtml, {
         onClick: () => {
@@ -52,9 +52,9 @@ const cardsArray = mockCatalog.map((item) => {
         }
     })
 
-    return card.render(item); // new Card потом ещё и render?
+    return card.render(item); // в клон записваем все поля с mockCatalog. ОЗУ.
 })
-
+// вызываются сеттеры, которые уже работают со страницей реально.
 page.render({
     catalog: cardsArray,
     counter: 0,
